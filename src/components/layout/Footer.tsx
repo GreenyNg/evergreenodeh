@@ -17,11 +17,7 @@ const navLinks = [
 
 export default function Footer() {
   return (
-    <footer
-      className="border-t"
-      style={{ borderColor: "var(--border)" }}
-    >
-      {/* CTA */}
+    <footer className="border-t" style={{ borderColor: "var(--border)" }}>
       <div className="max-w-6xl mx-auto px-6 md:px-10 py-20 text-center">
         <p
           className="font-serif italic text-4xl md:text-5xl mb-3"
@@ -35,10 +31,7 @@ export default function Footer() {
         >
           Then I build in it.
         </p>
-        <p
-          className="text-sm mb-10"
-          style={{ color: "var(--text-muted)" }}
-        >
+        <p className="text-sm mb-10" style={{ color: "var(--text-muted)" }}>
           Got one that needs filling?
         </p>
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
@@ -60,11 +53,7 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Bottom bar */}
-      <div
-        className="border-t"
-        style={{ borderColor: "var(--border)" }}
-      >
+      <div className="border-t" style={{ borderColor: "var(--border)" }}>
         <div className="max-w-6xl mx-auto px-6 md:px-10 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-6">
             {navLinks.map((link) => (
@@ -78,7 +67,6 @@ export default function Footer() {
               </Link>
             ))}
           </div>
-
           <div className="flex items-center gap-5">
             {socials.map((s) => (
               <a
@@ -93,11 +81,7 @@ export default function Footer() {
               </a>
             ))}
           </div>
-
-          <p
-            className="text-xs"
-            style={{ color: "var(--text-muted)" }}
-          >
+          <p className="text-xs" style={{ color: "var(--text-muted)" }}>
             © Evergreen Odeh · Built with love 🌿
           </p>
         </div>

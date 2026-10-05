@@ -37,7 +37,6 @@ export default function Navbar() {
       }`}
     >
       <nav className="max-w-6xl mx-auto px-6 md:px-10 h-16 flex items-center justify-between">
-        {/* Logo */}
         <Link
           href="/"
           className="text-sm font-medium tracking-wide transition-colors duration-200"
@@ -46,7 +45,6 @@ export default function Navbar() {
           Evergreen
         </Link>
 
-        {/* Links */}
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
             <Link
@@ -69,7 +67,6 @@ export default function Navbar() {
           ))}
         </div>
 
-        {/* Theme toggle */}
         {mounted && (
           <button
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}

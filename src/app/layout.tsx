@@ -4,6 +4,7 @@ import { ThemeProvider } from "next-themes";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import "./globals.css";
+import { Suspense } from "react";
 
 const dmSans = DM_Sans({
   subsets: ["latin"],
@@ -21,21 +22,21 @@ const dmSerif = DM_Serif_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Evergreen Odeh — Product Designer, AI-Enabled Builder",
+  title: "Evergreen Odeh - Product Designer, AI-Enabled Builder",
   description:
     "Founders come to me to shape things that don't exist yet. Product designer, business strategist, AI-enabled builder.",
   openGraph: {
     title: "Evergreen Odeh",
-    description: "Product Designer · AI-Enabled Builder",
+    description: "Product Designer - AI-Enabled Builder",
     images: ["/images/og-image.jpg"],
   },
 };
 
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
   return (
     <html
       lang="en"
@@ -44,15 +45,16 @@ export default function RootLayout({
     >
       <body className="font-sans antialiased">
         <ThemeProvider
-          attribute="class"
-          defaultTheme="light"
-          enableSystem={false}
+        attribute="class"
+        defaultTheme="light"
+        enableSystem={false}
+        disableTransitionOnChange
         >
           <Navbar />
           <main>{children}</main>
           <Footer />
-        </ThemeProvider>
-      </body>
+          </ThemeProvider>
+          </body>
     </html>
   );
 }
