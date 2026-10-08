@@ -61,7 +61,7 @@ export const projects: Project[] = [
     accent: "#a8c0e8",
     accentSoft: "rgba(168, 192, 232, 0.15)",
     stat: "20%",
-    statLabel: "Customer satisfaction increase",
+    statLabel: "Happier users",
     problem: "Cohut started with a big vision — a highly customizable LMS. The reality was a three-month timeline, six engineers, one designer, and a launch date that couldn't move.",
     approach: "Discovery first. Research revealed 90% of program managers ran cohorts from desktop using spreadsheets — but learners accessed content from mobile. I built the design system early in parallel with engineering. When the team realized the LMS direction couldn't ship in time, I redesigned the entire product in 48 hours.",
     features: [
@@ -88,7 +88,7 @@ export const projects: Project[] = [
     accent: "#c8b4e8",
     accentSoft: "rgba(200, 180, 232, 0.15)",
     stat: "50%",
-    statLabel: "Faster time to launch",
+    statLabel: "Faster launch",
     problem: "Language learners don't need another tutor. They need someone to practise with. Existing tools were too robotic, too chatty — and users were creeped out by AIs that tried to seem human.",
     approach: "Research pointed to one consistent insight: the real barrier is anxiety, not motivation. I designed around that. Every feature was built to lower the stakes of speaking — and every animation was hand-crafted to make the app feel alive without making the AI feel human.",
     features: [
@@ -114,6 +114,8 @@ export const projects: Project[] = [
     tab: "branding",
     accent: "#c8b4e8",
     accentSoft: "rgba(200, 180, 232, 0.15)",
+    stat: "100%",
+    statLabel: "Satisfied",
     problem: "The product needed a brand that felt warm and trustworthy without mimicking human emotion. Most AI products either looked too clinical or overcorrected into something uncomfortably human.",
     approach: "I led with personality before aesthetics. The brand character came first — calm, supportive, conversational, never manipulative — and every visual decision followed from that. Bauhaus-inspired direction, soft pastel colours drawn from country flags.",
     features: [
@@ -138,6 +140,8 @@ export const projects: Project[] = [
     tab: "branding",
     accent: "#e8b8d0",
     accentSoft: "rgba(232, 184, 208, 0.15)",
+    stat: "3",
+    statLabel: "Pivots survived",
     problem: "African academic research was being produced, graded, published — and then left behind. Resonans wanted to change that. The challenge: design an identity for an organization still mid-pivot.",
     approach: "I came into the branding as co-founder, having interviewed 30+ researchers. The brand needed to communicate research, accessibility, and hope. The lamp concept emerged from the intersection of illumination, sound waves, and knowledge travelling — deliberately non-literal.",
     features: [
@@ -147,7 +151,7 @@ export const projects: Project[] = [
       { title: "Brand style guide", description: "Documented for consistency beyond individual design files." },
     ],
     outcome: [
-      { value: "1 year", label: "Brand held through multiple product pivots" },
+      { value: "1 year", label: "Brand held through 3 pivots" },
       { value: "30+", label: "Researchers engaged during co-founding phase" },
     ],
     timeline: "Ongoing from co-founding",
@@ -162,8 +166,8 @@ export const projects: Project[] = [
     tab: "product",
     accent: "#f0b8a0",
     accentSoft: "rgba(240, 184, 160, 0.15)",
-    stat: "50%",
-    statLabel: "Faster than timeline",
+    stat: "2x",
+    statLabel: "Faster delivery",
     problem: "XEPP was Beacon's first consumer-facing product. The website needed to feel relatable, lively, and immediately clear to someone who had never heard of XEPP.",
     approach: "Before touching Figma, I used the product. I redesigned the hero from image-based to something more artistic, vectorized AI-generated assets to fit the visual language, and optimized every asset for performance without sacrificing quality.",
     features: [
@@ -174,7 +178,7 @@ export const projects: Project[] = [
       { title: "Design system for handoff", description: "Small but consistent — developers could move fast." },
     ],
     outcome: [
-      { value: "50%", label: "Faster than original timeline" },
+      { value: "50%", label: "Faster than timeline" },
       { value: "✓", label: "Successful XEPP product launch" },
       { value: "✓", label: "Positive reception across all stakeholder teams" },
     ],
@@ -190,7 +194,7 @@ export const projects: Project[] = [
     accent: "#a8d0b8",
     accentSoft: "rgba(168, 208, 184, 0.15)",
     stat: "4x",
-    statLabel: "Ticket purchases in one month",
+    statLabel: "Ticket sales",
     problem: "UDC had 15 chapters across Nigeria but 40% had gone inactive. Chapter leads felt abandoned. Months later they were being asked to mobilize again.",
     approach: "I treated the community like a product. Before asking anyone to buy a ticket, I rebuilt the system that made participation possible — monthly chapter meetings, Discord migration, community profiling, and a newsletter strategy I wrote end to end.",
     features: [
@@ -202,7 +206,7 @@ export const projects: Project[] = [
       { title: "Newsletter strategy", description: "Direct communication channel written end to end from May." },
     ],
     outcome: [
-      { value: "4x", label: "Community ticket purchases in one month" },
+      { value: "4x", label: "Ticket purchases in one month" },
       { value: "15", label: "Chapters rebuilt and active" },
       { value: "Oct 16", label: "Conference — results incoming" },
     ],
@@ -245,7 +249,7 @@ export const projects: Project[] = [
     accent: "#a8c0e8",
     accentSoft: "rgba(168, 192, 232, 0.15)",
     isFirst: true,
-    firstLabel: "First designer-led Hacktoberfest at Unilag",
+    firstLabel: "First at Unilag",
     problem: "Every Hacktoberfest resource assumed you were a developer. Designers had no clear entry point into open source.",
     approach: "I created a full onboarding programme for designers, recorded step-by-step video tutorials showing real GitHub contributions, hosted a hands-on session, and built a leaderboard to celebrate contributors.",
     features: [

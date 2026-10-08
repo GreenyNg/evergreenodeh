@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { DM_Sans, DM_Serif_Display } from "next/font/google";
+import { DM_Sans, Cormorant_Garamond } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -13,9 +13,9 @@ const dmSans = DM_Sans({
   display: "swap",
 });
 
-const dmSerif = DM_Serif_Display({
+const dmSerif = Cormorant_Garamond({
   subsets: ["latin"],
-  weight: ["400"],
+  weight: ["300", "400", "500", "600"],
   style: ["normal", "italic"],
   variable: "--font-dm-serif",
   display: "swap",
