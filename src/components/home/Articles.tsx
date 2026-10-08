@@ -10,6 +10,7 @@ export default function Articles() {
       style={{ background: "var(--bg-secondary)" }}
     >
       <div className="max-w-6xl mx-auto px-6 md:px-10">
+
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -48,7 +49,7 @@ export default function Articles() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.08 }}
-              className="flex items-center justify-between py-5 border-b group transition-all duration-200 mask-hover"
+              className="flex items-center justify-between py-5 border-b group transition-all duration-200"
               style={{ borderColor: "var(--border)" }}
             >
               <div className="flex-1 pr-8">
@@ -59,7 +60,7 @@ export default function Articles() {
                   {article.date} · {article.publication}
                 </p>
                 <p
-                  className="text-sm font-medium leading-snug transition-colors duration-200 group-hover:text-accent"
+                  className="text-sm font-medium leading-snug transition-colors duration-200"
                   style={{ color: "var(--text-primary)" }}
                 >
                   {article.title}
@@ -74,6 +75,7 @@ export default function Articles() {
             </motion.a>
           ))}
         </div>
+
       </div>
     </section>
   );
