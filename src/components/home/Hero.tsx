@@ -36,7 +36,7 @@ const floatingProjects = [
 export default function Hero() {
   return (
     <section
-      className="relative pt-36 pb-12 md:pt-32 md:pb-20 overflow-hidden"
+      className="relative min-h-screen flex items-center pt-16 overflow-hidden"
       style={{ background: "var(--bg)" }}
     >
       {/* Ambient blobs */}
@@ -72,7 +72,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="flex items-center gap-3 mb-5 md:mb-8"
+              className="flex items-center gap-3 mb-8"
             >
               <span
                 className="block w-5 h-px"
@@ -100,11 +100,11 @@ export default function Hero() {
             </motion.h1>
 
             <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.35 }}
-            className="text-base md:text-lg leading-relaxed mb-6 md:mb-10 font-light max-w-md"
-            style={{ color: "var(--text-secondary)" }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.35 }}
+              className="text-base md:text-lg leading-relaxed mb-10 font-light max-w-md"
+              style={{ color: "var(--text-secondary)" }}
             >
               Founders come to me to shape things that don&apos;t exist yet. I
               use AI to ship faster, without sacrificing quality.
