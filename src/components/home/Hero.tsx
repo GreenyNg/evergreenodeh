@@ -69,22 +69,38 @@ export default function Hero() {
           {/* Left — copy */}
           <div className="flex-1 max-w-xl">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="flex items-center gap-3 mb-8"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="flex items-center gap-3 mb-8"
             >
+              
               <span
-                className="block w-5 h-px"
-                style={{ background: "var(--color-lavender)" }}
+              className="block w-5 h-px"
+              style={{ background: "var(--color-lavender)" }}
               />
-              <span
-                className="text-xs tracking-widest uppercase"
-                style={{ color: "var(--text-muted)" }}
-              >
-                Hi, I&apos;m Evergreen Odeh
-              </span>
-            </motion.div>
+              <div className="flex items-center gap-2">
+                <div
+                className="w-7 h-7 rounded-full overflow-hidden flex-shrink-0"
+                style={{
+                  border: "1.5px solid var(--surface-border)",
+                  background: "var(--lavender-soft)",
+                }}
+                >
+                  <img
+                  src="/images/avatar.jpg"
+                  alt="Evergreen Odeh"
+                  className="w-full h-full object-cover"
+                  />
+                  </div>
+                  <span
+                  className="text-xs tracking-widest uppercase"
+                  style={{ color: "var(--text-muted)" }}
+                  >
+                    Hi, I&apos;m Evergreen Odeh
+                    </span>
+                    </div>
+                    </motion.div>
 
             <motion.h1
             initial={{ opacity: 0, y: 24 }}

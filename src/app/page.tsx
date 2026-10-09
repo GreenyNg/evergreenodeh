@@ -1,5 +1,6 @@
 import Hero from "@/components/home/Hero";
 import ProjectsSection from "@/components/home/ProjectsSection";
+import DribbbleCarousel from "@/components/home/DribbbleCarousel";
 import WhyMe from "@/components/home/WhyMe";
 import Tools from "@/components/home/Tools";
 import Metrics from "@/components/home/Metrics";
@@ -12,6 +13,7 @@ export default function Home() {
     <>
       <Hero />
       <ProjectsSection />
+      <DribbbleCarousel />
       <WhyMe />
       <Tools />
       <Metrics />
