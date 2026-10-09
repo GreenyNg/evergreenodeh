@@ -36,7 +36,7 @@ const floatingProjects = [
 export default function Hero() {
   return (
     <section
-      className="relative min-h-screen flex items-center pt-16 overflow-hidden"
+      className="relative overflow-hidden"
       style={{ background: "var(--bg)" }}
     >
       {/* Ambient blobs */}
@@ -64,7 +64,7 @@ export default function Hero() {
         }}
       />
 
-      <div className="max-w-6xl mx-auto px-6 md:px-10 w-full">
+      <div className="max-w-6xl mx-auto px-6 md:px-10 w-full pt-40 pb-24">
         <div className="flex flex-col lg:flex-row items-start justify-between gap-16">
           {/* Left — copy */}
           <div className="flex-1 max-w-xl">
