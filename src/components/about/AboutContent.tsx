@@ -1,0 +1,356 @@
+"use client";
+
+import { motion } from "framer-motion";
+import { timeline } from "@/data/timeline";
+import { toolsRow1, toolsRow2 } from "@/data/tools";
+import AITwin from "@/components/shared/AITwin";
+
+const allTools = [...toolsRow1, ...toolsRow2];
+
+const workflowSteps = [
+  {
+    number: "01",
+    title: "Research",
+    description: "Gathering signals. Organizing knowledge. Making sense of domain before generating solutions.",
+    tool: "NotebookLM",
+    accent: "#c8b4e8",
+  },
+  {
+    number: "02",
+    title: "Exploration",
+    description: "Pressure-testing ideas. Asking sharp questions. Surfacing the edges of a problem space.",
+    tool: "ChatGPT · Claude",
+    accent: "#a8d0b8",
+  },
+  {
+    number: "03",
+    title: "Prototyping",
+    description: "Making ideas tangible. Fast, rough, real. Optimizing for learning speed over polish.",
+    tool: "Lovable · v0 · Replit",
+    accent: "#f0b8a0",
+  },
+  {
+    number: "04",
+    title: "Refinement",
+    description: "Introducing structure. Resolving system logic. Turning rough surfaces into considered ones.",
+    tool: "Figma",
+    accent: "#a8c0e8",
+  },
+  {
+    number: "05",
+    title: "Iteration",
+    description: "Feedback loops. Repeated cycles. Each pass makes the thinking sharper.",
+    tool: "All of the above",
+    accent: "#e8b8d0",
+  },
+];
+
+export default function AboutContent() {
+  return (
+    <main
+      className="min-h-screen pt-32 pb-24"
+      style={{ background: "var(--bg)" }}
+    >
+      <div className="max-w-4xl mx-auto px-6 md:px-10">
+
+        {/* Opening */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="mb-20"
+        >
+          <p
+            className="text-xs tracking-widest uppercase mb-6"
+            style={{ color: "var(--text-muted)" }}
+          >
+            About me
+          </p>
+          <h1
+            className="font-serif text-4xl md:text-6xl leading-tight mb-8"
+            style={{ color: "var(--text-primary)" }}
+          >
+            I have a habit of showing up{" "}
+            <em style={{ color: "var(--text-accent)" }}>
+              where things don&apos;t exist yet.
+            </em>
+          </h1>
+          <p
+            className="text-base leading-relaxed font-light mb-6 max-w-2xl"
+            style={{ color: "var(--text-secondary)" }}
+          >
+            First designer-led Hacktoberfest at Unilag. First DevFest Student
+            Edition in Lagos. First in-house ticketing system for GDG Lagos. A
+            language buddy that feels human without pretending to be one.
+          </p>
+          <p
+            className="text-base leading-relaxed font-light max-w-2xl"
+            style={{ color: "var(--text-secondary)" }}
+          >
+            I don&apos;t go looking for firsts. I just notice the gap and walk in.
+          </p>
+        </motion.div>
+
+        {/* Who */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mb-20 pb-20"
+          style={{ borderBottom: "0.5px solid var(--border)" }}
+        >
+          <p
+            className="text-xs tracking-widest uppercase mb-6"
+            style={{ color: "var(--text-muted)" }}
+          >
+            Who I am
+          </p>
+          <p
+            className="text-base leading-relaxed font-light mb-4 max-w-2xl"
+            style={{ color: "var(--text-secondary)" }}
+          >
+            Product designer. AI-enabled builder. 4+ years across fintech,
+            edtech, AI, community, events, R&D, and more. Currently learning
+            what lives underneath the things I design.
+          </p>
+          <p
+            className="text-base leading-relaxed font-light max-w-2xl"
+            style={{ color: "var(--text-secondary)" }}
+          >
+            I&apos;ve spent a lot of time building communities, mentoring
+            designers, and creating spaces for people to find their footing.
+            Around 100 people so far. It keeps pulling me back.
+          </p>
+        </motion.div>
+
+        {/* AI Workflow */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mb-20 pb-20"
+          style={{ borderBottom: "0.5px solid var(--border)" }}
+        >
+          <p
+            className="text-xs tracking-widest uppercase mb-6"
+            style={{ color: "var(--text-muted)" }}
+          >
+            How I use AI
+          </p>
+          <h2
+            className="font-serif text-3xl md:text-4xl mb-10"
+            style={{ color: "var(--text-primary)" }}
+          >
+            A repeatable system from{" "}
+            <em style={{ color: "var(--text-accent)" }}>
+              idea to execution.
+            </em>
+          </h2>
+
+          <div className="space-y-4">
+            {workflowSteps.map((step, i) => (
+              <motion.div
+                key={step.number}
+                initial={{ opacity: 0, x: -12 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: i * 0.08 }}
+                className="glass rounded-2xl p-6 flex items-start gap-6"
+              >
+                <span
+                  className="text-xs font-mono flex-shrink-0 mt-0.5"
+                  style={{ color: "var(--text-muted)" }}
+                >
+                  {step.number}
+                </span>
+                <div className="flex-1">
+                  <div className="flex items-center justify-between mb-2">
+                    <p
+                      className="text-sm font-medium"
+                      style={{ color: "var(--text-primary)" }}
+                    >
+                      {step.title}
+                    </p>
+                    <span
+                      className="text-xs px-2 py-0.5 rounded-full"
+                      style={{
+                        background: `${step.accent}22`,
+                        color: step.accent,
+                      }}
+                    >
+                      {step.tool}
+                    </span>
+                  </div>
+                  <p
+                    className="text-sm font-light leading-relaxed"
+                    style={{ color: "var(--text-muted)" }}
+                  >
+                    {step.description}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Tools */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mb-20 pb-20"
+          style={{ borderBottom: "0.5px solid var(--border)" }}
+        >
+          <p
+            className="text-xs tracking-widest uppercase mb-6"
+            style={{ color: "var(--text-muted)" }}
+          >
+            My tools
+          </p>
+          <div className="flex flex-wrap gap-2">
+            {allTools.map((tool) => (
+              <span
+                key={tool.name}
+                className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs glass"
+                style={{ color: "var(--text-secondary)" }}
+              >
+                <span
+                  className="w-1.5 h-1.5 rounded-full flex-shrink-0"
+                  style={{ background: tool.color }}
+                />
+                {tool.name}
+              </span>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Timeline */}
+<motion.div
+  initial={{ opacity: 0, y: 20 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true }}
+  transition={{ duration: 0.6 }}
+  className="mb-20 pb-20"
+  style={{ borderBottom: "0.5px solid var(--border)" }}
+>
+  <p
+    className="text-xs tracking-widest uppercase mb-10"
+    style={{ color: "var(--text-muted)" }}
+  >
+    Timeline
+  </p>
+
+  <div className="flex flex-col gap-6">
+    {timeline.map((item, i) => (
+      <motion.div
+        key={i}
+        initial={{ opacity: 0, x: -12 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.4, delay: i * 0.05 }}
+        className="flex items-start gap-4"
+      >
+        {/* Left — year + dot */}
+        <div className="flex flex-col items-center flex-shrink-0 w-20">
+          <p
+            className="text-xs mb-2 text-right w-full"
+            style={{ color: "var(--text-muted)" }}
+          >
+            {item.year}
+          </p>
+          <div
+            className="w-2 h-2 rounded-full flex-shrink-0"
+            style={{ background: item.accent }}
+          />
+        </div>
+
+        {/* Vertical line */}
+        <div
+          className="w-px self-stretch mt-1 flex-shrink-0"
+          style={{ background: "var(--border)", minHeight: "24px" }}
+        />
+
+        {/* Right — content */}
+        <div className="pb-6">
+          <p
+            className="text-sm font-medium mb-0.5 leading-snug"
+            style={{ color: "var(--text-primary)" }}
+          >
+            {item.title}
+          </p>
+          <p
+            className="text-xs mb-1"
+            style={{ color: "var(--text-muted)" }}
+          >
+            {item.organisation}
+          </p>
+          {item.isFirst && (
+            <span
+              className="text-xs px-1.5 py-0.5 rounded-full"
+              style={{
+                background: `${item.accent}22`,
+                color: item.accent,
+              }}
+            >
+              ↗ First
+            </span>
+          )}
+        </div>
+      </motion.div>
+    ))}
+  </div>
+</motion.div>
+
+{/* CTA */}
+<motion.div
+  initial={{ opacity: 0, y: 20 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true }}
+  transition={{ duration: 0.6 }}
+  className="text-center pt-12"
+  style={{ borderTop: "0.5px solid var(--border)" }}
+>
+  <p
+    className="font-serif italic text-3xl md:text-4xl mb-2"
+    style={{ color: "var(--text-primary)" }}
+  >
+    I find the gap.
+  </p>
+  <p
+    className="font-serif text-3xl md:text-4xl mb-8"
+    style={{ color: "var(--text-accent)" }}
+  >
+    Then I build in it.
+  </p>
+  <p
+    className="text-sm mb-8"
+    style={{ color: "var(--text-muted)" }}
+  >
+    Got one that needs filling?
+  </p>
+  <div className="flex flex-col sm:flex-row gap-3 justify-center">
+    <a
+      href="mailto:everodeh48@gmail.com"
+      className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-medium glass transition-all duration-300 hover:scale-105 mask-hover mask-lavender"
+      style={{ color: "var(--text-accent)" }}
+    >
+      Get in touch →
+    </a>
+    <a
+      href="/resume.pdf"
+      download
+      className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm transition-all duration-300 hover:scale-105 glass"
+      style={{ color: "var(--text-muted)" }}
+    >
+      Download Resume ↓
+    </a>
+  </div>
+</motion.div>
+
+      </div>
+    </main>
+  );
+}

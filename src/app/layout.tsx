@@ -6,6 +6,7 @@ import Footer from "@/components/layout/Footer";
 import "./globals.css";
 import { ProjectsProvider } from "@/lib/ProjectsContext";
 import AITwin from "@/components/shared/AITwin";
+import BackToTop from "@/components/shared/BackToTop";
 import { Suspense } from "react";
 
 const dmSans = DM_Sans({
@@ -57,6 +58,7 @@ export default function RootLayout({
     <main>{children}</main>
     <Footer />
     <AITwin />
+    <BackToTop />
   </ProjectsProvider>
 </ThemeProvider>
           </body>
