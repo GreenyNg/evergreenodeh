@@ -4,6 +4,8 @@ import { ThemeProvider } from "next-themes";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import "./globals.css";
+import { ProjectsProvider } from "@/lib/ProjectsContext";
+import AITwin from "@/components/shared/AITwin";
 import { Suspense } from "react";
 
 const dmSans = DM_Sans({
@@ -45,15 +47,18 @@ export default function RootLayout({
     >
       <body className="font-sans antialiased">
         <ThemeProvider
-        attribute="class"
-        defaultTheme="light"
-        enableSystem={false}
-        disableTransitionOnChange
-        >
-          <Navbar />
-          <main>{children}</main>
-          <Footer />
-          </ThemeProvider>
+  attribute="class"
+  defaultTheme="light"
+  enableSystem={false}
+  disableTransitionOnChange
+>
+  <ProjectsProvider>
+    <Navbar />
+    <main>{children}</main>
+    <Footer />
+    <AITwin />
+  </ProjectsProvider>
+</ThemeProvider>
           </body>
     </html>
   );

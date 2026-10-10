@@ -5,8 +5,11 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { projects } from "@/data/projects";
 import type { Project } from "@/data/projects";
+import { useProjects } from "@/lib/ProjectsContext";
 
-const quadrants = [
+type Quadrant = { id: string; label: string; short: string };
+
+const quadrants: Quadrant[] = [
   { id: "all", label: "All", short: "All" },
   { id: "product", label: "Product", short: "Product" },
   { id: "branding", label: "Branding", short: "Brand" },
@@ -107,7 +110,7 @@ function TabBar({
   activeTab,
   handleTabClick,
 }: {
-  quadrants: typeof import("./ProjectsSection")extends never ? never : { id: string; label: string; short: string }[];
+  quadrants: Quadrant[];
   activeTab: string;
   handleTabClick: (id: string) => void;
 }) {
@@ -139,12 +142,18 @@ function TabBar({
 
 export default function ProjectsSection() {
   const [activeTab, setActiveTab] = useState("all");
+  const { setProjectsActive } = useProjects();
   const [activeQuadrant, setActiveQuadrant] = useState("product");
-  const sectionRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
   const quadrantRefs = useRef<Record<string, HTMLDivElement | null>>({});
 
   useEffect(() => {
     const handleScroll = () => {
+      if (sectionRef.current) {
+        const rect = sectionRef.current.getBoundingClientRect();
+        const inSection = rect.top < window.innerHeight && rect.bottom > 120;
+        setProjectsActive(inSection);
+      }
       let current = "product";
       for (const q of quadrantIds) {
         const el = quadrantRefs.current[q];
@@ -283,28 +292,11 @@ export default function ProjectsSection() {
           style={{ pointerEvents: "none" }}
         >
           <div style={{ pointerEvents: "auto" }}>
-            <div className="glass rounded-full px-2 py-1.5 flex items-center gap-1 shadow-lg">
-              {quadrants.map((q) => (
-                <button
-                  key={q.id}
-                  onClick={() => handleTabClick(q.id)}
-                  className="px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-300"
-                  style={{
-                    background:
-                      activeTab === q.id
-                        ? "rgba(122, 110, 176, 0.15)"
-                        : "transparent",
-                    color:
-                      activeTab === q.id
-                        ? "var(--text-accent)"
-                        : "var(--text-muted)",
-                  }}
-                >
-                  <span className="hidden sm:inline">{q.label}</span>
-                  <span className="sm:hidden">{q.short}</span>
-                </button>
-              ))}
-            </div>
+            <TabBar
+              quadrants={quadrants}
+              activeTab={activeTab}
+              handleTabClick={handleTabClick}
+            />
           </div>
         </div>
 

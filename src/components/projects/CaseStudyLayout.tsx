@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { projects } from "@/data/projects";
 import type { Project } from "@/data/projects";
 
 export default function CaseStudyLayout({ project }: { project: Project }) {
@@ -300,25 +301,54 @@ export default function CaseStudyLayout({ project }: { project: Project }) {
           </div>
         )}
 
-        {/* CTA */}
-        <div
-          className="text-center pt-12"
-          style={{ borderTop: "0.5px solid var(--border)" }}
-        >
+        {/* Next project */}
+{(() => {
+  const allProjects = projects;
+  const currentIndex = allProjects.findIndex(p => p.slug === project.slug);
+  const nextProject = allProjects[(currentIndex + 1) % allProjects.length];
+  return (
+    <div
+      className="pt-12"
+      style={{ borderTop: "0.5px solid var(--border)" }}
+    >
+      <p
+        className="text-xs tracking-widest uppercase mb-4"
+        style={{ color: "var(--text-muted)" }}
+      >
+        Next project
+      </p>
+      <Link
+        href={`/projects/${nextProject.slug}`}
+        className="group flex items-center justify-between glass rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+      >
+        <div>
+          <div
+            className="w-5 h-0.5 rounded-full mb-3"
+            style={{ background: nextProject.accent }}
+          />
           <p
-            className="font-serif italic text-2xl mb-2"
+            className="text-sm font-medium mb-1"
             style={{ color: "var(--text-primary)" }}
           >
-            Got a gap that needs filling?
+            {nextProject.title}
           </p>
-          <a
-            href="mailto:everodeh48@gmail.com"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-medium glass transition-all duration-300 hover:scale-105 mask-hover mask-lavender mt-4"
-            style={{ color: "var(--text-accent)" }}
+          <p
+            className="text-xs"
+            style={{ color: "var(--text-muted)" }}
           >
-            Get in touch →
-          </a>
+            {nextProject.tags.slice(0, 2).join(" · ")}
+          </p>
         </div>
+        <span
+          className="text-xl transition-transform duration-300 group-hover:translate-x-1"
+          style={{ color: "var(--text-muted)" }}
+        >
+          →
+        </span>
+      </Link>
+    </div>
+  );
+})()}
 
       </div>
     </article>
