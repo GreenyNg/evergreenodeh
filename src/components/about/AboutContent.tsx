@@ -227,80 +227,98 @@ export default function AboutContent() {
           </div>
         </motion.div>
 
-        {/* Timeline */}
+        {/* Timeline — horizontal carousel */}
 <motion.div
   initial={{ opacity: 0, y: 20 }}
   whileInView={{ opacity: 1, y: 0 }}
   viewport={{ once: true }}
   transition={{ duration: 0.6 }}
-  className="mb-20 pb-20"
-  style={{ borderBottom: "0.5px solid var(--border)" }}
+  className="mb-24"
 >
   <p
-    className="text-xs tracking-widest uppercase mb-10"
+    className="text-xs tracking-widest uppercase mb-10 px-6 md:px-0"
     style={{ color: "var(--text-muted)" }}
   >
     Timeline
   </p>
 
-  <div className="flex flex-col gap-6">
-    {timeline.map((item, i) => (
-      <motion.div
-        key={i}
-        initial={{ opacity: 0, x: -12 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.4, delay: i * 0.05 }}
-        className="flex items-start gap-4"
-      >
-        {/* Left — year + dot */}
-        <div className="flex flex-col items-center flex-shrink-0 w-20">
-          <p
-            className="text-xs mb-2 text-right w-full"
-            style={{ color: "var(--text-muted)" }}
-          >
-            {item.year}
-          </p>
-          <div
-            className="w-2 h-2 rounded-full flex-shrink-0"
-            style={{ background: item.accent }}
-          />
-        </div>
+  <style>{`
+    @keyframes timelineScroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .timeline-track {
+      animation: timelineScroll 40s linear infinite;
+    }
+    .timeline-track:hover {
+      animation-play-state: paused;
+    }
+  `}</style>
 
-        {/* Vertical line */}
+  <div style={{ overflow: "hidden", width: "100%" }}>
+    <div
+      className="timeline-track flex items-start"
+      style={{ width: "max-content" }}
+    >
+      {[...timeline, ...timeline].map((item, i) => (
         <div
-          className="w-px self-stretch mt-1 flex-shrink-0"
-          style={{ background: "var(--border)", minHeight: "24px" }}
-        />
-
-        {/* Right — content */}
-        <div className="pb-6">
-          <p
-            className="text-sm font-medium mb-0.5 leading-snug"
-            style={{ color: "var(--text-primary)" }}
-          >
-            {item.title}
-          </p>
-          <p
-            className="text-xs mb-1"
-            style={{ color: "var(--text-muted)" }}
-          >
-            {item.organisation}
-          </p>
-          {item.isFirst && (
-            <span
-              className="text-xs px-1.5 py-0.5 rounded-full"
+          key={i}
+          className="relative flex flex-col"
+          style={{ minWidth: "200px", paddingRight: "0" }}
+        >
+          {/* Horizontal line with dot */}
+          <div className="flex items-center mb-4">
+            <div
+              className="w-3 h-3 rounded-full flex-shrink-0 z-10"
               style={{
-                background: `${item.accent}22`,
-                color: item.accent,
+                background: item.accent,
+                boxShadow: `0 0 0 3px ${item.accent}22`,
               }}
+            />
+            <div
+              className="flex-1 h-px"
+              style={{
+                background: `linear-gradient(to right, ${item.accent}44, var(--border))`,
+                minWidth: "160px",
+              }}
+            />
+          </div>
+
+          {/* Content */}
+          <div className="pr-6 pl-1">
+            <p
+              className="text-xs mb-1"
+              style={{ color: "var(--text-muted)" }}
             >
-              ↗ First
-            </span>
-          )}
+              {item.year}
+            </p>
+            <p
+              className="text-xs font-medium mb-0.5 leading-snug"
+              style={{ color: "var(--text-primary)" }}
+            >
+              {item.title}
+            </p>
+            <p
+              className="text-xs leading-snug mb-1"
+              style={{ color: "var(--text-muted)" }}
+            >
+              {item.organisation}
+            </p>
+            {item.isFirst && (
+              <span
+                className="text-xs px-1.5 py-0.5 rounded-full"
+                style={{
+                  background: `${item.accent}22`,
+                  color: item.accent,
+                }}
+              >
+                ↗ First
+              </span>
+            )}
+          </div>
         </div>
-      </motion.div>
-    ))}
+      ))}
+    </div>
   </div>
 </motion.div>
 
