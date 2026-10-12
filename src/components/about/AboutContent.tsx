@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { timeline } from "@/data/timeline";
 import { toolsRow1, toolsRow2 } from "@/data/tools";
+import PlantGallery from "@/components/about/PlantGallery";
 import AITwin from "@/components/shared/AITwin";
 
 const allTools = [...toolsRow1, ...toolsRow2];
@@ -123,6 +124,30 @@ export default function AboutContent() {
             Around 100 people so far. It keeps pulling me back.
           </p>
         </motion.div>
+
+        {/* Plant gallery */}
+<motion.div
+  initial={{ opacity: 0, y: 20 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true }}
+  transition={{ duration: 0.6 }}
+  className="mb-20 pb-20"
+  style={{ borderBottom: "0.5px solid var(--border)" }}
+>
+  <p
+    className="text-xs tracking-widest uppercase mb-10"
+    style={{ color: "var(--text-muted)" }}
+  >
+    A little more me
+  </p>
+  <p
+    className="text-xs mb-8"
+    style={{ color: "var(--text-muted)" }}
+  >
+    Tap the fruit to pluck it.
+  </p>
+  <PlantGallery />
+</motion.div>
 
         {/* AI Workflow */}
         <motion.div
@@ -319,52 +344,6 @@ export default function AboutContent() {
         </div>
       ))}
     </div>
-  </div>
-</motion.div>
-
-{/* CTA */}
-<motion.div
-  initial={{ opacity: 0, y: 20 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  viewport={{ once: true }}
-  transition={{ duration: 0.6 }}
-  className="text-center pt-12"
-  style={{ borderTop: "0.5px solid var(--border)" }}
->
-  <p
-    className="font-serif italic text-3xl md:text-4xl mb-2"
-    style={{ color: "var(--text-primary)" }}
-  >
-    I find the gap.
-  </p>
-  <p
-    className="font-serif text-3xl md:text-4xl mb-8"
-    style={{ color: "var(--text-accent)" }}
-  >
-    Then I build in it.
-  </p>
-  <p
-    className="text-sm mb-8"
-    style={{ color: "var(--text-muted)" }}
-  >
-    Got one that needs filling?
-  </p>
-  <div className="flex flex-col sm:flex-row gap-3 justify-center">
-    <a
-      href="mailto:everodeh48@gmail.com"
-      className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-medium glass transition-all duration-300 hover:scale-105 mask-hover mask-lavender"
-      style={{ color: "var(--text-accent)" }}
-    >
-      Get in touch →
-    </a>
-    <a
-      href="/resume.pdf"
-      download
-      className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm transition-all duration-300 hover:scale-105 glass"
-      style={{ color: "var(--text-muted)" }}
-    >
-      Download Resume ↓
-    </a>
   </div>
 </motion.div>
 
