@@ -138,8 +138,8 @@ export default function PlantGallery() {
       {/* Plant SVG */}
       <svg
         viewBox="0 0 500 420"
-        className="w-full max-w-lg"
-        style={{ overflow: "visible" }}
+        className="w-full"
+        style={{ maxWidth: "100%" }}
       >
         {/* Pot */}
         <ellipse cx="250" cy="400" rx="55" ry="12" fill="rgba(200,180,232,0.15)" />

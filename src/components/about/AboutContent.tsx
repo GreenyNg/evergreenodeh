@@ -135,17 +135,12 @@ export default function AboutContent() {
   style={{ borderBottom: "0.5px solid var(--border)" }}
 >
   <p
-    className="text-xs tracking-widest uppercase mb-10"
-    style={{ color: "var(--text-muted)" }}
-  >
-    A little more me
-  </p>
-  <p
-    className="text-xs mb-8"
-    style={{ color: "var(--text-muted)" }}
-  >
-    Tap the fruit to pluck it.
-  </p>
+  className="text-xs mb-8"
+  style={{ color: "var(--text-muted)" }}
+>
+  Tap a fruit.
+</p>
+
   <PlantGallery />
 </motion.div>
 
