@@ -135,13 +135,12 @@ export default function AboutContent() {
   style={{ borderBottom: "0.5px solid var(--border)" }}
 >
   <p
-  className="text-xs mb-8"
+  className="text-xs mb-0"
   style={{ color: "var(--text-muted)" }}
 >
   Tap a fruit.
 </p>
-
-  <PlantGallery />
+<PlantGallery />
 </motion.div>
 
         {/* AI Workflow */}

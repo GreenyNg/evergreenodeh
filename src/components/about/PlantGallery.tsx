@@ -122,6 +122,7 @@ function Fruit({
 }
 
 export default function PlantGallery() {
+  const [groundFruits, setGroundFruits] = useState<Photo[]>([]);
   const [fallingFruit, setFallingFruit] = useState<{
     photo: Photo;
     startX: number;
@@ -131,15 +132,18 @@ export default function PlantGallery() {
 
   const handlePluck = (photo: Photo, cx: number, cy: number) => {
     setFallingFruit({ photo, startX: cx, startY: cy });
+    setTimeout(() => {
+      setGroundFruits((prev) => [...prev, photo]);
+    }, 650);
   };
 
   return (
     <div className="relative w-full flex justify-center">
       {/* Plant SVG */}
       <svg
-        viewBox="0 0 500 420"
-        className="w-full"
-        style={{ maxWidth: "100%" }}
+      viewBox="0 0 500 450"
+      className="w-full"
+      style={{ maxWidth: "100%", marginTop: "-16px" }}
       >
         {/* Pot */}
         <ellipse cx="250" cy="400" rx="55" ry="12" fill="rgba(200,180,232,0.15)" />
@@ -228,7 +232,94 @@ export default function PlantGallery() {
         <Fruit photo={photos[2]} cx={172} cy={180} r={19} onPluck={handlePluck} />
         <Fruit photo={photos[3]} cx={328} cy={200} r={21} onPluck={handlePluck} />
         <Fruit photo={photos[4]} cx={250} cy={138} r={20} onPluck={handlePluck} />
+
+        {/* Fruits on ground — scattered under plant */}
+{groundFruits.length > 0 && (
+  <div
+    className="relative w-full"
+    style={{ height: "60px", marginTop: "-20px" }}
+  >
+    {groundFruits.map((photo, i) => {
+      const rotations = [-25, 15, -10, 20, -8, 18, -30, 12];
+      const leftPositions = [28, 38, 22, 45, 32, 42, 25, 50];
+      const rotation = rotations[i % rotations.length];
+      const left = leftPositions[i % leftPositions.length];
+
+      return (
+        <motion.div
+          key={i}
+          initial={{ y: -120, opacity: 0, rotate: rotation * 2 }}
+          animate={{ y: 0, opacity: 1, rotate: rotation }}
+          transition={{
+            type: "spring",
+            stiffness: 180,
+            damping: 20,
+            mass: 1.4,
+            delay: i * 0.05,
+          }}
+          onClick={() => setModalPhoto(photo)}
+          className="absolute w-10 h-10 rounded-full overflow-hidden cursor-pointer hover:scale-110 transition-transform duration-200"
+          style={{
+            left: `${left}%`,
+            bottom: "4px",
+            border: `1.5px solid ${photo.accent}`,
+            boxShadow: `0 2px 8px ${photo.accent}44`,
+            transform: `rotate(${rotation}deg)`,
+          }}
+        >
+          <img
+            src={photo.src}
+            alt={photo.alt}
+            className="w-full h-full object-cover"
+          />
+        </motion.div>
+      );
+    })}
+  </div>
+)}
+
+{/* Fallen fruits inside SVG at base of plant */}
+{groundFruits.map((photo, i) => {
+  const rotations = [-25, 15, -10, 20, -8, 18, -30, 12];
+  const xPositions = [185, 220, 260, 300, 175, 240, 290, 210];
+  const rotation = rotations[i % rotations.length];
+  const x = xPositions[i % xPositions.length];
+  const r = 16;
+
+  return (
+    <g
+      key={i}
+      transform={`rotate(${rotation}, ${x}, 415)`}
+      onClick={() => setModalPhoto(photo)}
+      style={{ cursor: "pointer" }}
+    >
+      <defs>
+        <clipPath id={`ground-clip-${photo.id}-${i}`}>
+          <circle cx={x} cy={415} r={r} />
+        </clipPath>
+      </defs>
+      <circle
+        cx={x}
+        cy={415}
+        r={r}
+        fill="none"
+        stroke={photo.accent}
+        strokeWidth="1"
+        opacity={0.6}
+      />
+      <image
+        href={photo.src}
+        x={x - r}
+        y={415 - r}
+        width={r * 2}
+        height={r * 2}
+        clipPath={`url(#ground-clip-${photo.id}-${i})`}
+      />
+    </g>
+  );
+})}
       </svg>
+
 
       {/* Falling fruit animation */}
       <AnimatePresence>
