@@ -1,10 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { articles } from "@/data/articles";
 import { timeline } from "@/data/timeline";
 import { toolsRow1, toolsRow2 } from "@/data/tools";
 import PlantGallery from "@/components/about/PlantGallery";
 import AITwin from "@/components/shared/AITwin";
+import ArticleList from "../shared/ArticleList";
 
 const allTools = [...toolsRow1, ...toolsRow2];
 
@@ -125,24 +127,6 @@ export default function AboutContent() {
           </p>
         </motion.div>
 
-        {/* Plant gallery */}
-<motion.div
-  initial={{ opacity: 0, y: 20 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  viewport={{ once: true }}
-  transition={{ duration: 0.6 }}
-  className="mb-20 pb-20"
-  style={{ borderBottom: "0.5px solid var(--border)" }}
->
-  <p
-  className="text-xs mb-0"
-  style={{ color: "var(--text-muted)" }}
->
-  Tap a fruit.
-</p>
-<PlantGallery />
-</motion.div>
-
         {/* AI Workflow */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -213,6 +197,91 @@ export default function AboutContent() {
             ))}
           </div>
         </motion.div>
+
+        {/* Writing + Talks */}
+<motion.div
+  initial={{ opacity: 0, y: 20 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true }}
+  transition={{ duration: 0.6 }}
+  className="mb-20 pb-20"
+  style={{ borderBottom: "0.5px solid var(--border)" }}
+>
+  <p
+    className="text-xs tracking-widest uppercase mb-8"
+    style={{ color: "var(--text-muted)" }}
+  >
+    Writing & Talks
+  </p>
+
+  <ArticleList articles={articles.slice(0, 3)} />
+
+  {/* Featured talk */}
+  <div
+    className="glass rounded-2xl p-5 flex items-start gap-4"
+  >
+    <div
+      className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"
+      style={{ background: "rgba(200,180,232,0.2)" }}
+    >
+      <span style={{ color: "var(--color-lavender)", fontSize: "14px" }}>🎤</span>
+    </div>
+    <div className="flex-1">
+      <p
+        className="text-xs mb-1"
+        style={{ color: "var(--text-muted)" }}
+      >
+        Talk · Veet Career Series 2025
+      </p>
+      <p
+        className="text-sm font-medium mb-1"
+        style={{ color: "var(--text-primary)" }}
+      >
+        Thriving as a Tech Professional in an AI World
+      </p>
+      <p
+        className="text-xs"
+        style={{ color: "var(--text-muted)" }}
+      >
+        Practical insights on staying relevant, adaptable, and valuable in an AI-driven era.
+      </p>
+    </div>
+    <a
+      href="#"
+      className="text-xs flex-shrink-0 mt-1 transition-colors duration-200"
+      style={{ color: "var(--text-accent)" }}
+    >
+      Watch →
+    </a>
+  </div>
+
+  {/* Link to full resources */}
+  <a
+    href="/resources"
+    className="inline-flex items-center gap-2 mt-6 text-xs transition-colors duration-200"
+    style={{ color: "var(--text-muted)" }}
+  >
+    See all writing and talks →
+  </a>
+</motion.div>
+
+        {/* Plant gallery */}
+<motion.div
+  initial={{ opacity: 0, y: 20 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true }}
+  transition={{ duration: 0.6 }}
+  className="mb-20 pb-20"
+  style={{ borderBottom: "0.5px solid var(--border)" }}
+>
+  <p
+  className="text-xs mb-0"
+  style={{ color: "var(--text-muted)" }}
+>
+  Tap a fruit.
+</p>
+<PlantGallery />
+</motion.div>
 
         {/* Tools */}
         <motion.div

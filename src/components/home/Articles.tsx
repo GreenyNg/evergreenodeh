@@ -1,82 +1,72 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { articles } from "@/data/articles";
+import { useState } from "react";
+import type { Article } from "@/data/articles";
 
-export default function Articles() {
+function ArticleRow({ article }: { article: Article }) {
+  const [hovered, setHovered] = useState(false);
+
   return (
-    <section
-      className="py-24"
-      style={{ background: "var(--bg-secondary)" }}
+    <a
+      href={article.url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="relative flex items-center justify-between group overflow-hidden rounded-xl"
+      style={{
+        padding: "14px 16px",
+        marginBottom: "6px",
+      }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
     >
-      <div className="max-w-6xl mx-auto px-6 md:px-10">
+      {/* Subtle flowing wash */}
+      <motion.div
+        className="absolute inset-0 pointer-events-none rounded-xl"
+        initial={{ scaleX: 0, originX: 0 }}
+        animate={{ scaleX: hovered ? 1 : 0 }}
+        transition={{ duration: 0.35, ease: "easeOut" }}
+        style={{ background: "var(--lavender-soft)" }}
+      />
 
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+      {/* Content */}
+      <div className="relative z-10 flex-1 pr-6">
+        <p
+          className="text-xs mb-1"
+          style={{ color: "var(--text-muted)" }}
         >
-          <h2
-            className="font-serif text-4xl md:text-5xl mb-4"
-            style={{ color: "var(--text-primary)" }}
-          >
-            I Write to Think Better
-          </h2>
-          <p
-            className="text-sm max-w-md mx-auto leading-relaxed"
-            style={{ color: "var(--text-muted)" }}
-          >
-            Thoughts on design, AI, business, and better team work — shared as
-            I learn, grow, and collaborate.
-          </p>
-        </motion.div>
-
-        {/* Articles list */}
-        <div
-          className="border-t"
-          style={{ borderColor: "var(--border)" }}
+          {article.date} · {article.publication}
+        </p>
+        <p
+          className="text-sm font-medium leading-snug"
+          style={{ color: "var(--text-primary)" }}
         >
-          {articles.map((article, i) => (
-            <motion.a
-              key={article.title}
-              href={article.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: i * 0.08 }}
-              className="flex items-center justify-between py-5 border-b group transition-all duration-200"
-              style={{ borderColor: "var(--border)" }}
-            >
-              <div className="flex-1 pr-8">
-                <p
-                  className="text-xs mb-1"
-                  style={{ color: "var(--text-muted)" }}
-                >
-                  {article.date} · {article.publication}
-                </p>
-                <p
-                  className="text-sm font-medium leading-snug transition-colors duration-200"
-                  style={{ color: "var(--text-primary)" }}
-                >
-                  {article.title}
-                </p>
-              </div>
-              <span
-                className="text-lg transition-transform duration-300 group-hover:translate-x-1 flex-shrink-0"
-                style={{ color: "var(--text-muted)" }}
-              >
-                →
-              </span>
-            </motion.a>
-          ))}
-        </div>
-
+          {article.title}
+        </p>
       </div>
-    </section>
+
+      {/* Arrow */}
+      <motion.span
+        animate={{
+          rotate: hovered ? -40 : 0,
+          scale: hovered ? 1.15 : 1,
+        }}
+        transition={{ duration: 0.25, ease: "easeOut" }}
+        className="relative z-10 flex-shrink-0 text-base"
+        style={{ color: "var(--text-muted)" }}
+      >
+        →
+      </motion.span>
+    </a>
+  );
+}
+
+export default function ArticleList({ articles }: { articles: Article[] }) {
+  return (
+    <div>
+      {articles.map((article, i) => (
+        <ArticleRow key={i} article={article} />
+      ))}
+    </div>
   );
 }
