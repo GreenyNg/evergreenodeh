@@ -214,6 +214,16 @@ export default function AboutContent() {
     Writing & Talks
   </p>
 
+  <h2
+            className="font-serif text-3xl md:text-4xl mb-10"
+            style={{ color: "var(--text-primary)" }}
+          >
+            Thoughts on{" "}
+            <em style={{ color: "var(--text-accent)" }}>
+              design, AI & business.
+            </em>
+          </h2>
+
   <ArticleList articles={articles.slice(0, 3)} />
 
   {/* Featured talk */}
