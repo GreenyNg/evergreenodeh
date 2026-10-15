@@ -1,72 +1,42 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useState } from "react";
-import type { Article } from "@/data/articles";
+import { articles } from "@/data/articles";
+import ArticleList from "../shared/ArticleList";
 
-function ArticleRow({ article }: { article: Article }) {
-  const [hovered, setHovered] = useState(false);
-
+export default function Articles() {
   return (
-    <a
-      href={article.url}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="relative flex items-center justify-between group overflow-hidden rounded-xl"
-      style={{
-        padding: "14px 16px",
-        marginBottom: "6px",
-      }}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
+    <section
+      className="py-24"
+      style={{ background: "var(--bg-secondary)" }}
     >
-      {/* Subtle flowing wash */}
-      <motion.div
-        className="absolute inset-0 pointer-events-none rounded-xl"
-        initial={{ scaleX: 0, originX: 0 }}
-        animate={{ scaleX: hovered ? 1 : 0 }}
-        transition={{ duration: 0.35, ease: "easeOut" }}
-        style={{ background: "var(--lavender-soft)" }}
-      />
+      <div className="max-w-6xl mx-auto px-6 md:px-10">
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
+          <h2
+            className="font-serif text-4xl md:text-5xl mb-4"
+            style={{ color: "var(--text-primary)" }}
+          >
+            I Write to Think Better
+          </h2>
+          <p
+            className="text-sm max-w-md mx-auto leading-relaxed"
+            style={{ color: "var(--text-muted)" }}
+          >
+            Thoughts on design, AI, business, and better team work — shared as
+            I learn, grow, and collaborate.
+          </p>
+        </motion.div>
 
-      {/* Content */}
-      <div className="relative z-10 flex-1 pr-6">
-        <p
-          className="text-xs mb-1"
-          style={{ color: "var(--text-muted)" }}
-        >
-          {article.date} · {article.publication}
-        </p>
-        <p
-          className="text-sm font-medium leading-snug"
-          style={{ color: "var(--text-primary)" }}
-        >
-          {article.title}
-        </p>
+        {/* Articles list */}
+              <ArticleList articles={articles} />
       </div>
-
-      {/* Arrow */}
-      <motion.span
-        animate={{
-          rotate: hovered ? -40 : 0,
-          scale: hovered ? 1.15 : 1,
-        }}
-        transition={{ duration: 0.25, ease: "easeOut" }}
-        className="relative z-10 flex-shrink-0 text-base"
-        style={{ color: "var(--text-muted)" }}
-      >
-        →
-      </motion.span>
-    </a>
-  );
-}
-
-export default function ArticleList({ articles }: { articles: Article[] }) {
-  return (
-    <div>
-      {articles.map((article, i) => (
-        <ArticleRow key={i} article={article} />
-      ))}
-    </div>
+    </section>
   );
 }
