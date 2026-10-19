@@ -26,7 +26,10 @@ function ArticleRow({ article }: { article: Article }) {
         initial={{ scaleX: 0, originX: 0 }}
         animate={{ scaleX: hovered ? 1 : 0 }}
         transition={{ duration: 0.35, ease: "easeOut" }}
-        style={{ background: "var(--lavender-soft)" }}
+        style={{
+          background: "var(--lavender-soft)",
+          transformOrigin: "left center",
+        }}
       />
 
       {/* Content */}

@@ -108,10 +108,12 @@ function ProjectCard({ project }: { project: Project }) {
 function TabBar({
   quadrants,
   activeTab,
+  activeQuadrant,
   handleTabClick,
 }: {
   quadrants: Quadrant[];
   activeTab: string;
+  activeQuadrant: string;
   handleTabClick: (id: string) => void;
 }) {
   return (
@@ -123,13 +125,13 @@ function TabBar({
           className="px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-300"
           style={{
             background:
-              activeTab === q.id
-                ? "rgba(122, 110, 176, 0.15)"
-                : "transparent",
+            activeTab === q.id || (activeTab === "all" && activeQuadrant === q.id)
+            ? "rgba(122, 110, 176, 0.15)"
+            : "transparent",
             color:
-              activeTab === q.id
-                ? "var(--text-accent)"
-                : "var(--text-muted)",
+            activeTab === q.id || (activeTab === "all" && activeQuadrant === q.id)
+            ? "var(--text-accent)"
+            : "var(--text-muted)",
           }}
         >
           <span className="hidden sm:inline">{q.label}</span>
@@ -293,9 +295,10 @@ export default function ProjectsSection() {
         >
           <div style={{ pointerEvents: "auto" }}>
             <TabBar
-              quadrants={quadrants}
-              activeTab={activeTab}
-              handleTabClick={handleTabClick}
+            quadrants={quadrants}
+            activeTab={activeTab}
+            activeQuadrant={activeQuadrant}
+            handleTabClick={handleTabClick}
             />
           </div>
         </div>
