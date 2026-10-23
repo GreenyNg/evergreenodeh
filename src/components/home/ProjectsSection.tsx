@@ -116,6 +116,12 @@ function TabBar({
   activeQuadrant: string;
   handleTabClick: (id: string) => void;
 }) {
+  const isHighlighted = (id: string) => {
+    if (activeTab !== "all") return activeTab === id;
+    if (id === "all") return activeQuadrant === "product" || activeQuadrant === "";
+    return activeQuadrant === id;
+  };
+
   return (
     <div className="glass rounded-full px-2 py-1.5 flex items-center gap-1 shadow-lg">
       {quadrants.map((q) => (
@@ -124,14 +130,12 @@ function TabBar({
           onClick={() => handleTabClick(q.id)}
           className="px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-300"
           style={{
-            background:
-            activeTab === q.id || (activeTab === "all" && activeQuadrant === q.id)
-            ? "rgba(122, 110, 176, 0.15)"
-            : "transparent",
-            color:
-            activeTab === q.id || (activeTab === "all" && activeQuadrant === q.id)
-            ? "var(--text-accent)"
-            : "var(--text-muted)",
+            background: isHighlighted(q.id)
+              ? "rgba(122, 110, 176, 0.15)"
+              : "transparent",
+            color: isHighlighted(q.id)
+              ? "var(--text-accent)"
+              : "var(--text-muted)",
           }}
         >
           <span className="hidden sm:inline">{q.label}</span>
@@ -179,9 +183,14 @@ export default function ProjectsSection() {
   };
 
   const handleTabClick = (id: string) => {
-    setActiveTab(id);
-    if (id !== "all") scrollToQuadrant(id);
-  };
+  setActiveTab(id);
+  if (id !== "all") {
+    scrollToQuadrant(id);
+  } else {
+    // Reset — scroll back to top of section
+    sectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+};
 
   const isQuadrantDimmed = (id: string) =>
     activeTab !== "all" && activeTab !== id;
